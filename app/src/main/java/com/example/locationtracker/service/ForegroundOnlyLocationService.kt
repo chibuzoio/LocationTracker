@@ -96,6 +96,9 @@ class ForegroundOnlyLocationService : Service() {
                 // if a Notification is created (when the user navigates away from app).
                 currentLocation = locationResult.lastLocation
 
+                Log.e(TAG, "Location latitude here is ${currentLocation!!.latitude} and " +
+                        "location longitude here is ${currentLocation!!.longitude}")
+
                 // Notify our Activity that a new location was added. Again, if this was a
                 // production app, the Activity would be listening for changes to a database
                 // with new locations, but we are simplifying things a bit to focus on just
@@ -239,7 +242,6 @@ class ForegroundOnlyLocationService : Service() {
 
         // 1. Create Notification Channel for O+ and beyond devices (26+).
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-
             val notificationChannel = NotificationChannel(
                 NOTIFICATION_CHANNEL_ID, titleText, NotificationManager.IMPORTANCE_DEFAULT)
 
@@ -303,7 +305,7 @@ class ForegroundOnlyLocationService : Service() {
     companion object {
         private const val TAG = "LocationService"
 
-        private const val PACKAGE_NAME = "com.example.android.whileinuselocation"
+        private const val PACKAGE_NAME = "com.example.locationtracker.service"
 
         internal const val ACTION_FOREGROUND_ONLY_LOCATION_BROADCAST =
             "$PACKAGE_NAME.action.FOREGROUND_ONLY_LOCATION_BROADCAST"
